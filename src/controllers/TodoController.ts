@@ -43,5 +43,21 @@ export class TodoController {
         })
     }
 
-    
+    /**
+     * getTodos
+     */
+    public getTodos(req:Request, res:Response){
+        if(req.params.token){
+
+        }
+        Todo.find({}, (err, todos) => {
+            if(err){
+                winston.log(logTypes.error, err, { request: req});
+                res.status(500).send(errorMessages.get);
+                return;
+            }
+            res.json(todos);
+        })
+    }
+
 }
