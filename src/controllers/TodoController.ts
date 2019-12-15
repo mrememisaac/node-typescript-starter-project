@@ -60,4 +60,33 @@ export class TodoController {
         })
     }
 
+    /**
+     * update event
+     */
+    public update(req:Request, res: Response){
+        const required = new Map();
+        required.set("title", "Title");
+        required.set("dueDate", "Due date");
+        let message;
+
+        for(const [key, value] of required.entries()){
+            if(!req.body[key]){
+                message = `${value} is required`;
+                break;
+            }
+        }
+        if(message){
+            winston.log(logTypes.error, message, { request: req});
+            res.status(400).json({error: message });
+            return;
+        }
+        Todo.findOneAndUpdate({_id:req.params.todoId}, req.body, {new:true}, (err, todo) => {
+            if(err){
+                winston.log(logTypes.error, err, { request: req});
+                res.status(500).send(errorMessages.update);
+            }
+            res.json(todo)
+        })
+    }
+
 }
