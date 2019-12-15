@@ -89,4 +89,13 @@ export class TodoController {
         })
     }
 
+    public delete(req: Request, res: Response){
+        Todo.remove({ _id: req.params.todoId}, (err) => {
+            if(err){
+                winston.log(logTypes.error, err, { request: req});
+                res.status(500).send(errorMessages.update);
+            }
+        })
+        res.json({ message: "Todo deleted successfully"});
+    }
 }
