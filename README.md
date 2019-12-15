@@ -1,2 +1,5 @@
 # node-typescript-starter-project
-Node projects can be structured as you, please, Coming from a .net and laravel background, I find this strange. So I created this project as a starter for every node project i will ever create
+![alt text](https://pixabay.com/photos/brick-wall-pattern-texture-white-2172682/)
+This is an attempt to create a simple project structure, that I can build upon for my node projects
+
+This is a work in progress
